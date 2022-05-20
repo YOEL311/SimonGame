@@ -19,6 +19,10 @@ target 'simonGgame' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'RNSound', :path => '../node_modules/react-native-sound'
+
   target 'simonGgameTests' do
     inherit! :complete
     # Pods for testing

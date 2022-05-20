@@ -1,25 +1,21 @@
-// In App.js in a new project
-
 import * as React from 'react';
-import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-function HomeScreen() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
+import ScoreScreen from './screens/score';
+import GameScreen from './screens/game';
+import IntroScreen from './screens/intro';
+import {RootStackParamList} from './@types/navigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Navigator initialRouteName="Intro">
+        <Stack.Screen name="Game" component={GameScreen} />
+        <Stack.Screen name="Score" component={ScoreScreen} />
+        <Stack.Screen name="Intro" component={IntroScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
