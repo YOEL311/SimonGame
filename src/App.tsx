@@ -1,24 +1,22 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {applyMiddleware, legacy_createStore as createStore} from 'redux';
+import {Provider} from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
 
-import ScoreScreen from './screens/score';
-import GameScreen from './screens/game';
-import IntroScreen from './screens/intro';
-import {RootStackParamList} from './@types/navigation';
+import Router from './router';
+import rootReducer from './reducers';
+import middleware from './middlewares';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const middlewareEnhancer = applyMiddleware(thunkMiddleware, middleware);
 
-function App() {
+const store = createStore(rootReducer, undefined, middlewareEnhancer);
+
+const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Intro">
-        <Stack.Screen name="Game" component={GameScreen} />
-        <Stack.Screen name="Score" component={ScoreScreen} />
-        <Stack.Screen name="Intro" component={IntroScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <Router />
+    </Provider>
   );
-}
+};
 
 export default App;

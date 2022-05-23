@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {View, Text, Button} from 'react-native';
+// import {useSelector} from 'react-redux';
 import {ProfileScreenNavigationProp} from '../@types/navigation';
 
 function IntroScreen() {
@@ -24,7 +25,7 @@ function IntroScreen() {
       <Button
         title="scores"
         onPress={() => {
-          navigation.navigate('Game');
+          navigation.navigate('Score');
         }}
       />
     </View>

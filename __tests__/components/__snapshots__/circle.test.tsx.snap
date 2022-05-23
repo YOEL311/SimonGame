@@ -1,0 +1,223 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should test circle component should test to be rendered 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+    ]
+  }
+  testID="circleTestId"
+>
+  <RNSVGSvgView
+    align="xMidYMid"
+    bbHeight="300"
+    bbWidth="300"
+    focusable={false}
+    height="300"
+    meetOrSlice={0}
+    minX={-1}
+    minY={-1}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        Object {
+          "transform": Array [
+            Object {
+              "rotate": "-45deg",
+            },
+          ],
+        },
+        Object {
+          "flex": 0,
+          "height": 300,
+          "width": 300,
+        },
+      ]
+    }
+    vbHeight={2}
+    vbWidth={2}
+    width="300"
+  >
+    <RNSVGGroup
+      matrix={
+        Array [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+        ]
+      }
+    >
+      <RNSVGGroup
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        opacity={1}
+        responsible={true}
+      >
+        <RNSVGPath
+          d="M 1 0 A 1 1 0 0 1 0.031410759078128396 0.9995065603657316 L 0 0"
+          fill={4294901760}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+      <RNSVGGroup
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        opacity={1}
+        responsible={true}
+      >
+        <RNSVGPath
+          d="M 0.031410759078128396 0.9995065603657316 A 1 1 0 0 1 6.123233995736766e-17 1 L 0 0"
+          fill={4294967295}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+      <RNSVGGroup
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        opacity={1}
+        responsible={true}
+      >
+        <RNSVGPath
+          d="M 6.123233995736766e-17 1 A 1 1 0 0 1 -0.9995065603657316 0.031410759078128236 L 0 0"
+          fill={4278222848}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+      <RNSVGGroup
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        opacity={1}
+        responsible={true}
+      >
+        <RNSVGPath
+          d="M -0.9995065603657316 0.031410759078128236 A 1 1 0 0 1 -1 1.2246467991473532e-16 L 0 0"
+          fill={4294967295}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+      <RNSVGGroup
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        opacity={1}
+        responsible={true}
+      >
+        <RNSVGPath
+          d="M -1 1.2246467991473532e-16 A 1 1 0 0 1 -0.0314107590781283 -0.9995065603657316 L 0 0"
+          fill={4278190335}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+      <RNSVGGroup
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        opacity={1}
+        responsible={true}
+      >
+        <RNSVGPath
+          d="M -0.0314107590781283 -0.9995065603657316 A 1 1 0 0 1 -1.8369701987210297e-16 -1 L 0 0"
+          fill={4294967295}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+      <RNSVGGroup
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        opacity={1}
+        responsible={true}
+      >
+        <RNSVGPath
+          d="M -1.8369701987210297e-16 -1 A 1 1 0 0 1 0.9995065603657316 -0.03141075907812836 L 0 0"
+          fill={4294967040}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+      <RNSVGGroup
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        opacity={1}
+        responsible={true}
+      >
+        <RNSVGPath
+          d="M 0.9995065603657316 -0.03141075907812836 A 1 1 0 0 1 1 -2.4492935982947064e-16 L 0 0"
+          fill={4294967295}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGGroup>
+  </RNSVGSvgView>
+</View>
+`;

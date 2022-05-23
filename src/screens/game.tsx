@@ -7,21 +7,24 @@ import Circle from '../components/circle';
 // import {ProfileScreenNavigationProp} from '../@types/navigation';
 
 function GameScreen() {
-  const onColorPress = (index: number) => {};
+  const onColorPress = (index: number) => {
+    console.log('🚀 ~ file: game.tsx ~ line 11 ~ GameScreen ~ index', index);
+  };
 
-  // const navigation = useNavigation<ProfileScreenNavigationProp>();
-  const refShowColor = useRef<(arr: number[]) => void>(null);
+  const refShowColor = useRef<(arr: number[]) => void>(() => {});
   const colors = ['blue', 'red', 'green', 'yellow'];
 
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>GameScreen</Text>
-      <Button
-        title="sowh"
-        onPress={() => {
-          refShowColor?.current?.([1, 2, 3, 2, 1]);
-        }}
-      />
+      <View style={{padding: 40}}>
+        <Button
+          title="sowh"
+          onPress={() => {
+            refShowColor?.current?.([1, 2, 3, 2, 1]);
+          }}
+        />
+      </View>
       <Circle
         refShowColor={refShowColor}
         onColorPress={onColorPress}

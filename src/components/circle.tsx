@@ -31,7 +31,7 @@ const Circle = ({
   colors,
 }: {
   onColorPress: (index: number) => void;
-  refShowColor: any;
+  refShowColor: React.MutableRefObject<(arr: number[]) => void>;
   colors: string[];
 }) => {
   const arrLength = colors.length;
@@ -74,6 +74,7 @@ const Circle = ({
       ].join(' ');
       return (
         <TouchableOpacityG
+          testID={`testPath-${slice.color}`}
           ref={slice.myRef}
           key={pathData}
           onPressIn={() => {
@@ -98,15 +99,17 @@ const Circle = ({
 
   const runOnArr = async (arr: number[]) => {
     for (let index = 0; index < arr.length; index++) {
-      await sleep(MS_ETCH_COLOR);
       performerColor(arr[index]);
+      await sleep(MS_ETCH_COLOR);
     }
   };
   refShowColor.current = runOnArr;
 
   return (
     <>
-      <View style={[{alignItems: 'center', justifyContent: 'center'}]}>
+      <View
+        testID="circleTestId"
+        style={[{alignItems: 'center', justifyContent: 'center'}]}>
         <Svg
           height="300"
           width="300"
