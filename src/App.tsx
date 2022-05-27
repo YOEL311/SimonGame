@@ -9,7 +9,7 @@ import middleware from './middlewares';
 
 const middlewareEnhancer = applyMiddleware(thunkMiddleware, middleware);
 
-const store = createStore(rootReducer, undefined, middlewareEnhancer);
+const store = createStore(rootReducer, middlewareEnhancer);
 
 const App = () => {
   return (

@@ -28,10 +28,12 @@ const MS_ETCH_COLOR = 350;
 const Circle = ({
   onColorPress,
   refShowColor,
+  stateOfGame,
   colors,
 }: {
   onColorPress: (index: number) => void;
   refShowColor: React.MutableRefObject<(arr: number[]) => void>;
+  stateOfGame: React.MutableRefObject<'LISTENER' | 'DISPLAY'>;
   colors: string[];
 }) => {
   const arrLength = colors.length;
@@ -54,15 +56,16 @@ const Circle = ({
         color: el,
         myRef: elRefs[i],
         tone: tones[i],
+        index: i,
       },
-      {percent: 0.005, color: 'white'},
+      {percent: 0.005, color: 'white', index: -1},
     ];
   });
 
   const sliceF = () => {
     let cumulativePercent = 0;
     let arr = [];
-    arr = slices.map((slice, i) => {
+    arr = slices.map(slice => {
       const [startX, startY] = getCoordinatesForPercent(cumulativePercent);
       cumulativePercent += slice.percent;
       const [endX, endY] = getCoordinatesForPercent(cumulativePercent);
@@ -74,12 +77,13 @@ const Circle = ({
       ].join(' ');
       return (
         <TouchableOpacityG
+          stateOfGame={stateOfGame}
           testID={`testPath-${slice.color}`}
           ref={slice.myRef}
           key={pathData}
           onPressIn={() => {
             RNBeep.PlaySysSound(slice.tone || 0);
-            onColorPress(i);
+            onColorPress(slice.index);
           }}>
           <Path d={pathData} fill={slice.color} key={pathData} />
         </TouchableOpacityG>
@@ -91,17 +95,19 @@ const Circle = ({
   const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
   const performerColor = async (index: number) => {
-    elRefs[index].current?.makePressIn();
+    elRefs[index]?.current?.makePressIn();
     RNBeep.PlaySysSound(tones[index]);
     await sleep(200);
-    elRefs[index].current?.makePressOut();
+    elRefs[index]?.current?.makePressOut();
   };
 
   const runOnArr = async (arr: number[]) => {
+    stateOfGame.current = 'DISPLAY';
     for (let index = 0; index < arr.length; index++) {
-      performerColor(arr[index]);
       await sleep(MS_ETCH_COLOR);
+      performerColor(arr[index]);
     }
+    stateOfGame.current = 'LISTENER';
   };
   refShowColor.current = runOnArr;
 

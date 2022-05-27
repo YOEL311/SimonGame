@@ -71,7 +71,9 @@ export default class TouchableOpacityG extends Component {
   };
 
   touchableHandlePress = e => {
-    this.props.onPress && this.props.onPress(e);
+    if (this.props.stateOfGame.current === 'LISTENER') {
+      this.props.onPress && this.props.onPress(e);
+    }
   };
 
   touchableHandleLongPress = e => {

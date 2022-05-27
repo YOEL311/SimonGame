@@ -1,6 +1,10 @@
 import firestore from '@react-native-firebase/firestore';
+import { navigationRef } from '../router';
+import { CommonActions } from '@react-navigation/native';
 
-const fetchMiddleware = (store: any) => (next: any) => (action: any) => {
+const middleware = (store: any) => (next: any) => (action: any) => {
+
+
   next(action);
 
   const { dispatch, getState } = store;
@@ -25,15 +29,28 @@ const fetchMiddleware = (store: any) => (next: any) => (action: any) => {
       break;
     }
     case 'ADD_SCORE': {
+      const { userName } = getState();
       dispatch(async function add() {
         firestore().collection('score').add({
-          name: 'Elior',
-          score: 80,
+          name: userName,
+          score: payload,
           date: new Date(),
         });
       });
     }
+      break;
+    case 'USER_LOSE': {
+      dispatch({ type: 'ADD_SCORE', payload });
+      navigationRef?.current?.dispatch(
+        CommonActions.reset({
+          routes: [
+            { name: 'Score' },
+          ],
+        }));
+      break;
+    }
+
   }
 };
 
-export default fetchMiddleware;
+export default middleware;

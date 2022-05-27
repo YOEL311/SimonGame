@@ -9,9 +9,11 @@ import {RootStackParamList} from '../@types/navigation';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+export const navigationRef = React.createRef();
+
 function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName="Intro">
         <Stack.Screen name="Game" component={GameScreen} />
         <Stack.Screen name="Score" component={ScoreScreen} />

@@ -1,19 +1,38 @@
 import produce from 'immer';
 
+interface IState {
+  scoresList: string[];
+  userName: string;
+}
+
+interface IActionFetchSuccess {
+  type: 'FETCH_SCORES_SUCCESS';
+  payload: string[];
+}
+
+interface IActionSetUserName {
+  type: 'SET_USER_NAME';
+  payload: string;
+}
+
+type IActions = IActionFetchSuccess | IActionSetUserName
+
 const initialState = {
   scoresList: [],
-  name: '',
+  userName: '',
 };
 
-const reducer = (state = initialState, action: any) => {
+const reducer = (state: IState = initialState, action: IActions) => {
+  const { payload } = action;
   switch (action.type) {
     case 'FETCH_SCORES_SUCCESS':
-      const { payload } = action;
-
       return produce(state, draftState => {
-        draftState.scoresList = payload;
+        draftState.scoresList = payload as IActionFetchSuccess['payload'];
       });
-
+    case 'SET_USER_NAME':
+      return produce(state, draftState => {
+        draftState.userName = payload as IActionSetUserName['payload'];
+      });
     default:
       return state;
   }

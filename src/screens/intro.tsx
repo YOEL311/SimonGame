@@ -1,35 +1,45 @@
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
-import {View, Text, Button} from 'react-native';
-// import {useSelector} from 'react-redux';
+import {useState} from 'react';
+import {View, Text, Button, TextInput} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {ProfileScreenNavigationProp} from '../@types/navigation';
 
 function IntroScreen() {
   const navigation = useNavigation<ProfileScreenNavigationProp>();
+  const [name, setName] = useState('');
+  const dispatch = useDispatch();
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#93CAED',
+      }}>
+      <Text style={{fontSize: 50}}>Simon Game</Text>
+      <Text style={{fontSize: 20}}>Enter your name to start</Text>
+      <TextInput
+        style={{
+          height: 40,
+          margin: 12,
+          borderWidth: 1,
+          padding: 10,
+        }}
+        onChangeText={setName}
+        value={name}
+        placeholder="your name"
+      />
       <Button
-        title="Game"
+        title="Start New Game"
+        disabled={name.length === 0}
         onPress={() => {
+          dispatch({type: 'SET_USER_NAME', payload: name});
           navigation.navigate('Game');
-        }}
-      />
-      <Button
-        title="Intro"
-        onPress={() => {
-          navigation.navigate('Intro');
-        }}
-      />
-      <Button
-        title="scores"
-        onPress={() => {
-          navigation.navigate('Score');
         }}
       />
     </View>
   );
 }
-
 export default IntroScreen;
