@@ -15,6 +15,16 @@ function GameScreen() {
   const refShowColor = useRef<(arr: number[]) => void>(() => {});
   const levelOfUser = useRef(0);
   const dispatch = useDispatch();
+  const [listColors, setListColors] = React.useState<number[]>([
+    getRandomInt(lengthColors),
+  ]);
+
+  const stateOfGame = React.useRef<'LISTENER' | 'DISPLAY'>('DISPLAY');
+
+  React.useEffect(() => {
+    refShowColor?.current?.(listColors);
+  }, [listColors]);
+
   const onColorPress = (index: number) => {
     if (stateOfGame.current === 'DISPLAY' || index === -1) {
       return;
@@ -37,19 +47,10 @@ function GameScreen() {
     }
   };
 
-  const [listColors, setListColors] = React.useState<number[]>([
-    getRandomInt(lengthColors),
-  ]);
-  const stateOfGame = React.useRef<'LISTENER' | 'DISPLAY'>('DISPLAY');
-
   const addColorToList = React.useCallback(() => {
     const newColor = getRandomInt(lengthColors);
     setListColors(oldArray => [...oldArray, newColor]);
   }, []);
-
-  React.useEffect(() => {
-    refShowColor?.current?.(listColors);
-  }, [listColors]);
 
   const nextLevel = () => {
     showToast('nextLevel 🙂');
