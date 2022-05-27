@@ -3,8 +3,6 @@ import { navigationRef } from '../router';
 import { CommonActions } from '@react-navigation/native';
 
 const middleware = (store: any) => (next: any) => (action: any) => {
-
-
   next(action);
 
   const { dispatch, getState } = store;
@@ -15,7 +13,10 @@ const middleware = (store: any) => (next: any) => (action: any) => {
       dispatch(async function fetch() {
         const snapshot = await firestore().collection('score').get();
         const data = snapshot.docs.map(doc => doc.data());
-        const scoreList = data.map(el => {
+        const newData = data.sort((a, b) => {
+          return b.score - a.score;
+        }).slice(0, 15);
+        const scoreList = newData.map(el => {
           return {
             name: el.name,
             score: el.score,
@@ -31,16 +32,22 @@ const middleware = (store: any) => (next: any) => (action: any) => {
     case 'ADD_SCORE': {
       const { userName } = getState();
       dispatch(async function add() {
-        firestore().collection('score').add({
+        await firestore().collection('score').add({
           name: userName,
           score: payload,
           date: new Date(),
+        });
+        dispatch({
+          type: 'FETCH_SCORES',
         });
       });
     }
       break;
     case 'USER_LOSE': {
-      dispatch({ type: 'ADD_SCORE', payload });
+      const { scoresList } = getState();
+      if (payload !== 0 || scoresList.slice(-1)?.score <= payload) {
+        dispatch({ type: 'ADD_SCORE', payload });
+      }
       navigationRef?.current?.dispatch(
         CommonActions.reset({
           routes: [

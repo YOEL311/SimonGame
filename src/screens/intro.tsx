@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {View, Text, Button, TextInput} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {ProfileScreenNavigationProp} from '../@types/navigation';
@@ -9,6 +9,11 @@ function IntroScreen() {
   const navigation = useNavigation<ProfileScreenNavigationProp>();
   const [name, setName] = useState('');
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_SCORES',
+    });
+  }, [dispatch]);
 
   return (
     <View
@@ -39,6 +44,14 @@ function IntroScreen() {
           navigation.navigate('Game');
         }}
       />
+      <View style={{marginTop: 20}}>
+        <Button
+          title="got to list score"
+          onPress={() => {
+            navigation.navigate('Score');
+          }}
+        />
+      </View>
     </View>
   );
 }

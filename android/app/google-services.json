@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "449501186041",
+    "project_id": "simongame-4bc2e",
+    "storage_bucket": "simongame-4bc2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449501186041:android:cfc68f99805d7a6740df28",
+        "android_client_info": {
+          "package_name": "com.simonggame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449501186041-m0db18r4nsor6sk47kf4ckfd4htepe7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZAsFIfsKdNGolVuwxsB9wnW9P2VNQNNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449501186041-m0db18r4nsor6sk47kf4ckfd4htepe7p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

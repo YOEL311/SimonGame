@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {useRef} from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import Circle from '../components/circle';
+import {showToast} from '../../src/util/toast';
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
@@ -21,9 +22,10 @@ function GameScreen() {
     if (listColors[levelOfUser.current] === index) {
       userSuccess();
     } else {
+      showToast('you lose 🙁');
       dispatch({
         type: 'USER_LOSE',
-        payload: (levelOfUser.current + 1) * 10,
+        payload: levelOfUser.current * 10,
       });
     }
   };
@@ -50,6 +52,7 @@ function GameScreen() {
   }, [listColors]);
 
   const nextLevel = () => {
+    showToast('nextLevel 🙂');
     levelOfUser.current = 0;
     addColorToList();
   };
