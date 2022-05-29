@@ -39,7 +39,7 @@ const middleware = (store: any) => (next: any) => (action: any) => {
       break;
     case 'USER_LOSE': {
       const {scoresList} = getState();
-      if (payload !== 1 || scoresList.slice(-1)?.score <= payload) {
+      if (payload !== 10 || scoresList.slice(-1)?.score <= payload) {
         dispatch({type: 'ADD_SCORE', payload});
       }
       //@ts-ignore

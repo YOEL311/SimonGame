@@ -1,6 +1,6 @@
 import Svg, {Path} from 'react-native-svg';
 
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {View} from 'react-native';
 import TouchableOpacityG from '../util/TouchableOpacityG';
 import RNBeep from 'react-native-a-beep';
@@ -37,16 +37,10 @@ const Circle = ({
   colors: string[];
 }) => {
   const arrLength = colors.length;
-  const [elRefs, setElRefs] = React.useState<
-    React.RefObject<TouchableOpacityG>[]
-  >([]);
+  const ref = useRef<TouchableOpacityG[]>([]);
 
-  React.useEffect(() => {
-    setElRefs(oldElRefs =>
-      Array(arrLength)
-        .fill(arrLength)
-        .map((_, i) => oldElRefs[i] || React.createRef()),
-    );
+  useEffect(() => {
+    ref.current = ref.current.slice(0, arrLength);
   }, [arrLength]);
 
   const slices = colors.flatMap((el, i) => {
@@ -54,13 +48,19 @@ const Circle = ({
       {
         percent: 0.245,
         color: el,
-        myRef: elRefs[i],
         tone: tones[i],
         index: i,
       },
       {percent: 0.005, color: 'white', index: -1},
     ];
   });
+
+  const onPressIn = (slice: typeof slices[0]) => {
+    if (stateOfGame.current === 'LISTENER') {
+      RNBeep.PlaySysSound(slice.tone || 0);
+      onColorPress(slice.index);
+    }
+  };
 
   const sliceF = () => {
     let cumulativePercent = 0;
@@ -79,11 +79,10 @@ const Circle = ({
         <TouchableOpacityG
           stateOfGame={stateOfGame}
           testID={`testPath-${slice.color}`}
-          ref={slice.myRef}
+          ref={(el: TouchableOpacityG) => (ref.current[slice.index] = el)}
           key={pathData}
           onPressIn={() => {
-            RNBeep.PlaySysSound(slice.tone || 0);
-            onColorPress(slice.index);
+            onPressIn(slice);
           }}>
           <Path d={pathData} fill={slice.color} key={pathData} />
         </TouchableOpacityG>
@@ -96,10 +95,10 @@ const Circle = ({
     new Promise(resolve => setTimeout(resolve, ms));
 
   const performerColor = async (index: number) => {
-    elRefs[index]?.current?.makePressIn();
+    ref.current[index]?.makePressIn();
     RNBeep.PlaySysSound(tones[index]);
     await sleep(200);
-    elRefs[index]?.current?.makePressOut();
+    ref.current[index]?.makePressOut();
   };
 
   const runOnArr = async (arr: number[]) => {
