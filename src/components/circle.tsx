@@ -1,7 +1,7 @@
 import Svg, {Path} from 'react-native-svg';
 
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
 import TouchableOpacityG from '../util/TouchableOpacityG';
 import RNBeep from 'react-native-a-beep';
 const {
@@ -92,7 +92,8 @@ const Circle = ({
     return arr;
   };
 
-  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+  const sleep = (ms: number): Promise<void> =>
+    new Promise(resolve => setTimeout(resolve, ms));
 
   const performerColor = async (index: number) => {
     elRefs[index]?.current?.makePressIn();

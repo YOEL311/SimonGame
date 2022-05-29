@@ -35,7 +35,7 @@ function GameScreen() {
       showToast('you lose 🙁');
       dispatch({
         type: 'USER_LOSE',
-        payload: levelOfUser.current * 10,
+        payload: listColors.length * 10,
       });
     }
   };
