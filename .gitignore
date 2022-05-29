@@ -60,3 +60,4 @@ buck-out/
 /ios/Pods/
 /vendor/bundle/
 # android/app/google-services.json
+.eslintcache
