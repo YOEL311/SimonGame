@@ -10,6 +10,7 @@ describe('should test circle component', () => {
     const onColorPress = jest.fn();
     const colors = ['red', 'green', 'blue', 'yellow'];
     const rendered = render(
+      //@ts-ignore
       <Circle refShowColor={ref} onColorPress={onColorPress} colors={colors} />,
     );
     const circle = await rendered.findByTestId('circleTestId');

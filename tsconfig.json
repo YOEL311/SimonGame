@@ -6,17 +6,21 @@
         "isolatedModules": true,
         "jsx": "react-native",
         "lib": [
-            "es2017"
+            "es2019"
         ],
         "moduleResolution": "node",
         "noEmit": true,
         "strict": true,
-        "target": "esnext"
+        "target": "esnext",
+        "skipLibCheck": true,
+        "types": [
+            "jest",
+        ]
     },
     "exclude": [
         "node_modules",
         "babel.config.js",
         "metro.config.js",
-        "jest.config.js"
-    ]
+        "jest.config.js",
+    ],
 }
